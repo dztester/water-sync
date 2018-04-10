@@ -52,11 +52,13 @@ class SyncAreaMemberRelation extends Command
             $data_list = [];
 
             foreach ($records as $record) {
+                dump($record, $record->YHID, $record->PQMC);
                 $data_list[] = [
                     'member_number' => $record->YHID ?? '',
                     'area_name'     => $record->PQMC ?? '',
                 ];
             }
+            exit;
 
             $client = new Client(['base_uri' => 'http://182.61.56.51/']);
             $response = $client->request('POST', 'area_member_relation', [
