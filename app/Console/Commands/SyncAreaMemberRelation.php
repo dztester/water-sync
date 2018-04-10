@@ -52,7 +52,7 @@ class SyncAreaMemberRelation extends Command
             $data_list = [];
 
             foreach ($records as $record) {
-                dump($record, $record->YHID, $record->PQMC);
+                dump($record, $record->toArray());
                 $data_list[] = [
                     'member_number' => $record->YHID ?? '',
                     'area_name'     => $record->PQMC ?? '',
