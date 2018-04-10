@@ -43,6 +43,8 @@ class SyncAreaMemberRelation extends Command
         $limit = 100;
         $times = ceil($count / $limit);
 
+        $client = new Client(['base_uri' => 'http://182.61.56.51/']);
+
         for ($i = 0; $i < $times; $i++) {
 
             $offset = $i * $limit;
@@ -52,15 +54,12 @@ class SyncAreaMemberRelation extends Command
             $data_list = [];
 
             foreach ($records as $record) {
-                dump($record, $record->yhid, $record->pqmc);
                 $data_list[] = [
                     'member_number' => $record->yhid ?? '',
                     'area_name'     => $record->pqmc ?? '',
                 ];
             }
-            exit;
 
-            $client = new Client(['base_uri' => 'http://182.61.56.51/']);
             $response = $client->request('POST', 'area_member_relation', [
                 'json' => $data_list,
             ]);
